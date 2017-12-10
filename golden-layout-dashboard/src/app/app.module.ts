@@ -1,41 +1,32 @@
-import { AppComponent } from './app.component';
-import { ReduxService } from './redux/redux.service';
-import { AppState } from './shared/state/state';
-import { OpenContainerReducer } from './shared/state/reducers/open-container.reducer';
+import {AppComponent} from './app.component';
+import {ReduxService} from './shared/redux/redux.service';
+import {AppState} from './core/state/state';
 
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { NgReduxModule, NgRedux } from 'ng2-redux';
-import { Test1Component } from './test/test.component';
+
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
+import {NgReduxModule, NgRedux} from 'ng2-redux';
+
+import {CoreService} from './core/core.service';
+import {HeaderComponent} from './menu/header/header.component';
+import {LayoutComponent} from './shared/layout/layout.component';
+import {LayoutModule} from './shared/layout/layout.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent,Test1Component
-  ],
-  entryComponents:[
-    Test1Component
+    AppComponent, LayoutComponent, HeaderComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    NgReduxModule
+    NgReduxModule,
+    LayoutModule
   ],
-  providers: [ReduxService],
+  providers: [ReduxService, CoreService],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-  constructor(private reduxService : ReduxService) {
-
-    reduxService.init(new AppState(),[
-      new OpenContainerReducer()
-    ]);
-
-
-    
-
-  }
-}
+export class AppModule {}

@@ -1,13 +1,12 @@
-import { Action } from './actions';
-import { IAppState } from './state';
+import {Action} from './actions';
+import {IAppState} from './state';
 
 
 export function rootReducer(state: IAppState, action): IAppState {
-
-  if (ReduxUtil.mapReducers[action.type] != null) {
-    let act: string = action.type;
-    state.lastAction = act;
-    state = ReduxUtil.mapReducers[act](state, action.params);
+  let actionType: string = action.type;
+  state.lastAction = actionType;
+  if (ReduxUtil.mapReducers[actionType] != null) {
+    state = ReduxUtil.mapReducers[actionType](state, action.params);
   }
   return state;
 }
