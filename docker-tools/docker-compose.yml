@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+
+  frontal:
+    restart: always
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontal/src/conf.d:/etc/nginx/conf.d
+    links:
+      - api
+      - website
+
+  website:
+    ...
+
+  api:
+    ...
+
+  mongodb:
+    ...
+
